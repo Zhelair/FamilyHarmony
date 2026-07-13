@@ -1,7 +1,6 @@
 import { supabase } from './supabase'
 
 const today = () => new Date().toISOString().slice(0, 10)
-const memoryBucket = 'family-memories'
 
 export function weekStart() {
   const date = new Date()
@@ -13,15 +12,6 @@ function sumBy(items, key, amountKey = 'amount') { return items.reduce((totals, 
 function enrichGoals(goals, logs, userId) { const totals = sumBy(logs, 'goal_id'); const mine = sumBy(logs.filter((log) => log.user_id === userId), 'goal_id'); return goals.map((goal) => ({ ...goal, progress: totals[goal.id] || 0, myProgress: mine[goal.id] || 0 })) }
 function enrichChallenges(challenges, participants, logs, userId) { const mine = sumBy(logs.filter((log) => log.user_id === userId), 'challenge_id'); const counts = participants.filter((participant) => participant.status === 'accepted').reduce((totals, participant) => ({ ...totals, [participant.challenge_id]: (totals[participant.challenge_id] || 0) + 1 }), {}); const joined = new Set(participants.filter((participant) => participant.user_id === userId && participant.status === 'accepted').map((participant) => participant.challenge_id)); return challenges.map((challenge) => ({ ...challenge, progress: mine[challenge.id] || 0, participantCount: counts[challenge.id] || 0, joined: joined.has(challenge.id) })) }
 function enrichMoments(moments, participants, userId) { const counts = participants.filter((participant) => participant.status !== 'not_going').reduce((totals, participant) => ({ ...totals, [participant.moment_id]: (totals[participant.moment_id] || 0) + 1 }), {}); const joined = new Set(participants.filter((participant) => participant.user_id === userId && participant.status !== 'not_going').map((participant) => participant.moment_id)); return moments.map((moment) => ({ ...moment, participantCount: counts[moment.id] || 0, joined: joined.has(moment.id) })) }
-
-async function addSignedMemoryUrls(memories, profileNames = {}) {
-  const paths = memories.map((memory) => memory.photo_path).filter(Boolean)
-  if (!paths.length) return memories.map((memory) => ({ ...memory, authorName: profileNames[memory.created_by] || null, photoUrl: null }))
-  const { data, error } = await supabase.storage.from(memoryBucket).createSignedUrls(paths, 60 * 60)
-  if (error) throw error
-  const urls = new Map(data.map((item) => [item.path, item.signedUrl]))
-  return memories.map((memory) => ({ ...memory, authorName: profileNames[memory.created_by] || null, photoUrl: memory.photo_path ? urls.get(memory.photo_path) || null : null }))
-}
 
 export function calculateHarmonyScore(goals, challenges) { const goalScore = goals.reduce((score, goal) => score + (goal.myProgress * 5) + (goal.progress >= goal.target ? (goal.visibility === 'personal' ? 20 : 10) : 0), 0); const challengeScore = challenges.reduce((score, challenge) => score + (challenge.progress * 5) + (challenge.progress >= challenge.target ? 30 : 0), 0); return goalScore + challengeScore }
 export function unlockAchievements(goals, challenges, score) { const completed = goals.filter((goal) => goal.progress >= goal.target).length; const shared = goals.filter((goal) => goal.visibility === 'shared' && goal.progress >= goal.target).length; return [completed > 0 && { id: 'first-spark', title: 'First Spark', note: 'Complete your first weekly goal.' }, completed >= 3 && { id: 'steady-hands', title: 'Steady Hands', note: 'Complete three goals in one week.' }, shared > 0 && { id: 'family-fire', title: 'Family Fire', note: 'Help a shared goal reach its target.' }, challenges.some((challenge) => challenge.progress >= challenge.target) && { id: 'friendly-rival', title: 'Friendly Rival', note: 'Finish an opt-in family challenge.' }, score >= 100 && { id: 'bright-week', title: 'Bright Week', note: 'Earn 100 Harmony points.' }].filter(Boolean) }
@@ -41,7 +31,7 @@ export async function loadWorkspace(user) {
     supabase.from('family_challenges').select('id, household_id, created_by, title, description, category, target, starts_on, ends_on, created_at').eq('household_id', membership.household_id).gte('ends_on', today()).order('created_at'),
     supabase.from('daily_intentions').select('id, intention, reason, evening_note').eq('user_id', user.id).eq('intended_on', today()).maybeSingle(),
     supabase.from('family_moments').select('id, household_id, created_by, title, description, kind, scheduled_for, status, created_at').eq('household_id', membership.household_id).order('scheduled_for', { ascending: true, nullsFirst: false }).limit(30),
-    supabase.from('family_memories').select('id, household_id, moment_id, created_by, caption, photo_path, created_at').eq('household_id', membership.household_id).order('created_at', { ascending: false }).limit(30),
+    supabase.from('family_memories').select('id, household_id, moment_id, created_by, caption, created_at').eq('household_id', membership.household_id).order('created_at', { ascending: false }).limit(30),
     supabase.from('profiles').select('id, display_name'),
   ])
   if (householdError || checkInError || goalsError || reflectionError || challengesError || intentionError || momentsError || memoriesError || profilesError) throw householdError || checkInError || goalsError || reflectionError || challengesError || intentionError || momentsError || memoriesError || profilesError
@@ -55,7 +45,7 @@ export async function loadWorkspace(user) {
   ])
   if (goalLogError || participantError || challengeLogError || momentParticipantError) throw goalLogError || participantError || challengeLogError || momentParticipantError
   const enrichedGoals = enrichGoals(goals, goalLogs, user.id); const enrichedChallenges = enrichChallenges(challenges, participants, challengeLogs, user.id); const score = calculateHarmonyScore(enrichedGoals, enrichedChallenges); const profileNames = Object.fromEntries(profiles.map((person) => [person.id, person.display_name]))
-  return { profile, membership, household, checkIns: Object.fromEntries(checkIns.map(({ kind }) => [kind, true])), goals: enrichedGoals, challenges: enrichedChallenges, moments: enrichMoments(moments, momentParticipants, user.id), memories: await addSignedMemoryUrls(memories, profileNames), dailyIntention, reflection, score, achievements: unlockAchievements(enrichedGoals, enrichedChallenges, score) }
+  return { profile, membership, household, checkIns: Object.fromEntries(checkIns.map(({ kind }) => [kind, true])), goals: enrichedGoals, challenges: enrichedChallenges, moments: enrichMoments(moments, momentParticipants, user.id), memories: memories.map((memory) => ({ ...memory, authorName: profileNames[memory.created_by] || null })), dailyIntention, reflection, score, achievements: unlockAchievements(enrichedGoals, enrichedChallenges, score) }
 }
 
 export async function createHousehold(name, userId) { const { error } = await supabase.from('households').insert({ name: name.trim(), created_by: userId }); if (error) throw error }
@@ -73,24 +63,4 @@ export async function saveDailyIntention({ householdId, userId, values }) { cons
 export async function createFamilyMoment({ householdId, userId, title, description, kind, scheduledFor }) { const { data, error } = await supabase.from('family_moments').insert({ household_id: householdId, created_by: userId, title: title.trim(), description: description.trim() || null, kind, scheduled_for: scheduledFor || null }).select('id, household_id, created_by, title, description, kind, scheduled_for, status, created_at').single(); if (error) throw error; return { ...data, participantCount: 1, joined: true } }
 export async function joinFamilyMoment(momentId, userId) { const { error } = await supabase.from('family_moment_participants').upsert({ moment_id: momentId, user_id: userId, status: 'going' }); if (error) throw error }
 
-export async function createFamilyMemory({ householdId, momentId, userId, caption, photo }) {
-  let photoPath = null
-  if (photo) {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp']
-    if (!allowedTypes.includes(photo.type)) throw new Error('Choose a JPEG, PNG, or WebP photo.')
-    if (photo.size > 6 * 1024 * 1024) throw new Error('Choose a photo smaller than 6 MB.')
-    const extension = photo.type === 'image/png' ? 'png' : photo.type === 'image/webp' ? 'webp' : 'jpg'
-    photoPath = `${householdId}/${momentId}/${userId}/${crypto.randomUUID()}.${extension}`
-    const { error: uploadError } = await supabase.storage.from(memoryBucket).upload(photoPath, photo, { cacheControl: '3600', contentType: photo.type, upsert: false })
-    if (uploadError) throw uploadError
-  }
-  try {
-    const { data, error } = await supabase.from('family_memories').insert({ household_id: householdId, moment_id: momentId, created_by: userId, caption: caption.trim(), photo_path: photoPath }).select('id, household_id, moment_id, created_by, caption, photo_path, created_at').single()
-    if (error) throw error
-    const { data: signed } = photoPath ? await supabase.storage.from(memoryBucket).createSignedUrl(photoPath, 60 * 60) : { data: null }
-    return { ...data, photoUrl: signed?.signedUrl || null }
-  } catch (error) {
-    if (photoPath) await supabase.storage.from(memoryBucket).remove([photoPath])
-    throw error
-  }
-}
+export async function createFamilyMemory({ householdId, momentId, userId, caption }) { const { data, error } = await supabase.from('family_memories').insert({ household_id: householdId, moment_id: momentId, created_by: userId, caption: caption.trim() }).select('id, household_id, moment_id, created_by, caption, created_at').single(); if (error) throw error; return data }

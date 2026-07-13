@@ -21,7 +21,7 @@ Family Harmony is a family operating system with a soft game layer: dashboard-fi
 5. Opt-in challenges, Harmony points, achievements, and weekly reflection
 6. A data-driven 2D Harmony Home dashboard
 7. Settings, language preference, and owner-managed household access
-8. Together: shared plans, opt-in attendance, and private photo/caption memories
+8. Together: shared plans, opt-in attendance, and private caption memories
 9. Visit mode, richer family activity, and memories next
 
 ## Core entities

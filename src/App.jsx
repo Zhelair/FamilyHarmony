@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Navigate, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Bell, BookOpen, CalendarDays, Camera, Check, ChevronRight, CircleUserRound, Dumbbell, Eye, EyeOff, Flame, Footprints, Heart, HeartHandshake, House, Languages, Library, LockKeyhole, LogOut, Medal, Plus, Save, Settings, ShieldCheck, Sparkles, Sprout, Sun, Swords, Target, Trophy, UserPlus, UsersRound, Utensils } from 'lucide-react'
+import { Bell, BookOpen, CalendarDays, Check, ChevronRight, CircleUserRound, Dumbbell, Eye, EyeOff, Flame, Footprints, Heart, HeartHandshake, House, Languages, Library, LockKeyhole, LogOut, Medal, Plus, Save, Settings, ShieldCheck, Sparkles, Sprout, Sun, Swords, Target, Trophy, UserPlus, UsersRound, Utensils } from 'lucide-react'
 import { addExistingMember, calculateHarmonyScore, createFamilyChallenge, createFamilyMemory, createFamilyMoment, createHousehold, createWeeklyGoal, joinFamilyChallenge, joinFamilyMoment, loadWorkspace, logChallengeProgress, logGoalProgress, saveDailyIntention, saveWeeklyReflection, toggleCheckIn, unlockAchievements, updateProfileLocale } from './lib/hearthlight-api'
 import { isSupabaseConfigured, supabase } from './lib/supabase'
 import './App.css'
@@ -44,6 +44,7 @@ const checkInItems = [
 ]
 
 const fadeUp = { initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } }
+const Camera = Heart
 
 function BrandMark() { return <div className="brand"><span className="brand-mark"><Sparkles size={18} aria-hidden="true" /></span><span>Family Harmony</span></div> }
 

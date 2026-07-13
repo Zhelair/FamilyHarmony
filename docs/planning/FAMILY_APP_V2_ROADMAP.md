@@ -7,7 +7,10 @@
 - manually created accounts and owner-granted household access
 - profiles, households, membership, check-ins, RLS, and persisted daily check-ins
 - dashboard, My Day, and Settings UI
-- weekly goals migration, RLS, creation, and progress logging
+- weekly goals with presets, categories, RLS, creation, and progress logging
+- Russian interface preference
+- opt-in challenges, Harmony points, achievements, and Sunday reflection
+- first 2D Harmony Home dashboard: Hearth, Garden, Kitchen, Library, and Quiet Corner respond to real progress
 
 ## Next: meals
 
@@ -17,8 +20,8 @@
 
 ## Then
 
-- family glow, activity feed, member avatars
-- rewards and house progression derived from shared contribution
+- real family activity feed and member avatars
+- richer room details and rewards derived from shared contribution
 - memory wall
 - polish motion, art direction, and responsive dashboard states
 

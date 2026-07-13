@@ -11,7 +11,7 @@
 - Russian interface preference
 - opt-in challenges, Harmony points, achievements, and Sunday reflection
 - first 2D Harmony Home dashboard: Hearth, Garden, Kitchen, Library, and Quiet Corner respond to real progress
-- Together: shared plans, opt-in attendance, private photo/caption memories, and a private Supabase Storage bucket
+- Together: shared plans, opt-in attendance, and private caption memories
 - My Day: private intention, reason, evening note, and daily check-ins
 
 ## Next: make Together feel alive

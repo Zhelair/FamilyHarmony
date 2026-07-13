@@ -128,27 +128,6 @@ create policy "Users can update their own daily intentions"
   using (user_id = auth.uid())
   with check (user_id = auth.uid() and public.is_household_member(household_id));
 
-insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
-values ('family-memories', 'family-memories', false, 6291456, array['image/jpeg', 'image/png', 'image/webp'])
-on conflict (id) do update set public = false, file_size_limit = excluded.file_size_limit, allowed_mime_types = excluded.allowed_mime_types;
-
-create policy "Household members can view private family photos"
-  on storage.objects for select to authenticated
-  using (
-    bucket_id = 'family-memories'
-    and public.is_household_member(((storage.foldername(name))[1])::uuid)
-  );
-create policy "Household members can upload their own family photos"
-  on storage.objects for insert to authenticated
-  with check (
-    bucket_id = 'family-memories'
-    and owner_id = auth.uid()
-    and public.is_household_member(((storage.foldername(name))[1])::uuid)
-  );
-create policy "Uploaders can remove their own family photos"
-  on storage.objects for delete to authenticated
-  using (bucket_id = 'family-memories' and owner_id = auth.uid());
-
 grant select, insert, update on public.family_moments to authenticated;
 grant select, insert, update on public.family_moment_participants to authenticated;
 grant select, insert, update on public.family_memories to authenticated;

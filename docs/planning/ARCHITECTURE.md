@@ -1,4 +1,4 @@
-# Hearthlight Architecture
+# Family Harmony Architecture
 
 ## Current application
 

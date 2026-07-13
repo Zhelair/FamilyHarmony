@@ -1,53 +1,31 @@
 # Family App V2 Roadmap
 
-## Phase 1
+## Completed foundation
 
-- set stack to Vite + Tailwind + JavaScript
-- define routes and layout shell
-- add auth
-- create household + invite flow
+- Vite + React household shell
+- private password authentication
+- manually created accounts and owner-granted household access
+- profiles, households, membership, check-ins, RLS, and persisted daily check-ins
+- dashboard, My Day, and Settings UI
+- weekly goals migration, RLS, creation, and progress logging
 
-## Phase 2
+## Next: meals
 
-- build Household Dashboard
-- build My Dashboard
-- build challenge model
-- add quick daily check-ins
+- real weekly meal plans
+- household suggestions and voting
+- a chosen meal connected to shared weekly progress
 
-## Phase 3
+## Then
 
-- build reward system
-- add house progress view
-- add weekly challenge logic
+- family glow, activity feed, member avatars
+- rewards and house progression derived from shared contribution
+- memory wall
+- polish motion, art direction, and responsive dashboard states
 
-## Phase 4
-
-- rebuild meal planner
-- add voting
-- connect meals to shared weekly progress
-
-## Phase 5
-
-- add Memory Wall
-- polish motion, art direction, and room states
-- import or export summary data to Google Sheets if wanted
-
-## First MVP Cut
-
-If we stay disciplined, v1 rewrite should ship with:
-
-- auth
-- household creation
-- personal challenges
-- shared weekly goals
-- household dashboard
-- my dashboard
-- simple house progress
-
-## Nice Later
+## Later only if useful
 
 - realtime presence
 - notifications
-- richer lore scenes
-- tablets / wall dashboard mode
 - photo memories
+- tablet / wall dashboard mode
+- Google Sheets summary export

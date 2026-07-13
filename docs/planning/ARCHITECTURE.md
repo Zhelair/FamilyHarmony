@@ -1,152 +1,37 @@
 # Hearthlight Architecture
 
-## Folder Structure
+## Current application
 
-```text
-hearthlight-app/
-  public/
-  src/
-    app/
-      router.jsx
-      providers.jsx
-      routes.jsx
-    assets/
-      illustrations/
-      icons/
-      textures/
-    components/
-      ui/
-        button.jsx
-        card.jsx
-        dialog.jsx
-        drawer.jsx
-        input.jsx
-        progress.jsx
-        tabs.jsx
-      layout/
-        app-shell.jsx
-        mobile-nav.jsx
-        sidebar.jsx
-        topbar.jsx
-      dashboard/
-      challenges/
-      meals/
-      house/
-      memories/
-    features/
-      auth/
-        auth-api.js
-        auth-context.jsx
-        auth-guards.jsx
-      household/
-        household-api.js
-        household-hooks.js
-      challenges/
-        challenges-api.js
-        challenges-hooks.js
-      meals/
-        meals-api.js
-        meals-hooks.js
-      progress/
-        progress-api.js
-        progress-hooks.js
-      memories/
-        memories-api.js
-        memories-hooks.js
-    hooks/
-      use-breakpoint.js
-      use-current-member.js
-      use-household.js
-    lib/
-      supabase/
-        client.js
-        auth.js
-      constants/
-      format/
-      utils/
-    pages/
-      auth/
-        sign-in.jsx
-        sign-up.jsx
-        join-household.jsx
-      dashboard/
-        household-dashboard.jsx
-        my-dashboard.jsx
-      challenges/
-        weekly-challenges.jsx
-      meals/
-        meal-planner.jsx
-      house/
-        house-progress.jsx
-      memories/
-        memory-wall.jsx
-      settings/
-        settings.jsx
-    styles/
-      globals.css
-      tokens.css
-      utilities.css
-    main.jsx
-  .env.local
-  package.json
-  vite.config.js
-```
+- React + Vite single-page application with React Router.
+- Supabase Auth holds manually created email/password accounts.
+- Supabase Postgres holds profiles, households, memberships, personal check-ins, weekly goals, and goal-progress logs.
+- The browser uses only the public URL and anon key. Authorization is enforced with Row Level Security, never just a client route guard.
 
-## Route Map
+## Private access model
 
-- `/`
-- `/sign-in`
-- `/sign-up`
-- `/join`
-- `/dashboard`
-- `/me`
-- `/challenges`
-- `/meals`
-- `/house`
-- `/memories`
-- `/settings`
+1. An administrator manually creates an email/password account in Supabase and enables Auto confirm.
+2. The person signs in with password; public self-sign-up is disabled.
+3. The first account can create a household and becomes owner.
+4. A household owner grants another existing account access from Settings.
 
-## State Strategy
+There are no public sign-up, invite, join-household, magic-link, or email-delivery routes in v1.
 
-- Supabase for auth and remote data
-- React context for auth and household session
-- local component state for page interactions
+## Route map
 
-No extra global state library in v1 unless we truly need it.
+- `/dashboard` - household dashboard and shared weekly focus
+- `/me` - personal daily check-ins
+- `/challenges` - real weekly goals
+- `/meals` - next slice, currently placeholder
+- `/settings` - household access, password change, and sign-out
 
-## Design System Structure
+## Weekly goals model
 
-### Foundations
+- `weekly_goals` belongs to a household and current week.
+- A `shared` goal is visible to household members; any member can add progress.
+- A `personal` goal is visible only to its creator.
+- `goal_progress_logs` are append-only progress entries from the signed-in member.
+- RLS policies control both goal visibility and log access.
 
-- typography scale
-- spacing scale
-- color tokens
-- radius scale
-- shadow scale
-- motion rules
+## Build rule
 
-### Main UI Patterns
-
-- dashboard cards
-- quick action chips
-- bottom drawer for mobile actions
-- room progress panels
-- streak and milestone strips
-- family activity timeline
-
-## MVP First Screens
-
-1. Sign in / Sign up
-2. Create or Join Household
-3. Household Dashboard
-4. My Dashboard
-5. Weekly Challenges
-6. House Progress
-
-## Build Rule
-
-Every screen must feel:
-- useful first
-- beautiful immediately
-- fast on mobile
-- emotionally warm
+Every screen should be useful first, emotionally warm, fast on mobile, and explicitly private by design.

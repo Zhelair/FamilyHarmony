@@ -1,6 +1,6 @@
 # Hearthlight
 
-Hearthlight is a warm, dashboard-first family app: shared household goals, personal check-ins, gentle routines, meals, and a home that grows with the family.
+Hearthlight is a warm, private family app for shared household goals, personal check-ins, gentle routines, meals, and a home that grows with the family.
 
 ## Start here
 
@@ -9,11 +9,15 @@ npm.cmd install
 npm.cmd run dev
 ```
 
-## Supabase
+## Private access and Supabase
 
-The first UI slice works in demo mode without credentials. When you are ready to connect real accounts, copy `.env.example` to `.env.local` and provide the public URL and anon key from your Supabase project.
+This is a real, deployed private app - not a demo. It uses password sign-in only. Public sign-up, magic links, Resend, and custom-domain work are intentionally outside v1.
+
+Create each account manually in Supabase with **Auto confirm** enabled. A household owner then grants that existing account access in Settings. Follow [private access setup](docs/PRIVATE_ACCESS_SETUP.md) and apply both SQL migrations before using goals.
+
+Only `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` belong in the browser. Never add a service-role key to Vercel or client code.
 
 ## Project references
 
-- `docs/planning/` — carried-over product, stack, package, architecture, and roadmap documents
-- `design-system/hearthlight/MASTER.md` — UI/UX Pro Max visual-system source of truth
+- `docs/planning/` - product, stack, package, architecture, and roadmap notes
+- `design-system/hearthlight/MASTER.md` - live Hearthlight visual-system baseline

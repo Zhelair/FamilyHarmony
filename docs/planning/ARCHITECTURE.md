@@ -4,7 +4,7 @@
 
 - React + Vite single-page application with React Router.
 - Supabase Auth holds manually created email/password accounts.
-- Supabase Postgres holds profiles, households, memberships, personal check-ins, weekly goals, goal-progress logs, weekly reflections, and opt-in family challenges.
+- Supabase Postgres holds profiles, households, memberships, personal check-ins, daily intentions, weekly goals, goal-progress logs, weekly reflections, opt-in family challenges, Together moments, and private memories. Supabase Storage holds private family photos.
 - The browser uses only the public URL and anon key. Authorization is enforced with Row Level Security, never just a client route guard.
 
 ## Private access model
@@ -21,7 +21,8 @@ There are no public sign-up, invite, join-household, magic-link, or email-delive
 - `/dashboard` - household dashboard, real-progress Harmony Home, and shared weekly focus
 - `/me` - personal daily check-ins
 - `/challenges` - real weekly goals
-- `/meals` - next slice, currently placeholder
+- `/together` - shared moments, opt-in attendance, and private family memories
+- `/meals` - redirects to Together; meal planning is intentionally out of scope
 - `/settings` - household access, password change, and sign-out
 
 ## Weekly progress model
@@ -33,6 +34,7 @@ There are no public sign-up, invite, join-household, magic-link, or email-delive
 - RLS policies control both goal visibility and log access.
 - Challenges are household-visible, but members choose whether to join and log their own progress.
 - The dashboard computes room states from visible real progress; it does not persist or expose private-room progress to others.
+- Photos live in the private `family-memories` Storage bucket. Storage RLS allows only members of the folder's household to read them; the browser uses only the anon key and short-lived signed URLs.
 
 ## Build rule
 

@@ -11,24 +11,24 @@
 - Russian interface preference
 - opt-in challenges, Harmony points, achievements, and Sunday reflection
 - first 2D Harmony Home dashboard: Hearth, Garden, Kitchen, Library, and Quiet Corner respond to real progress
+- Together: shared plans, opt-in attendance, private photo/caption memories, and a private Supabase Storage bucket
+- My Day: private intention, reason, evening note, and daily check-ins
 
-## Next: meals
+## Next: make Together feel alive
 
-- real weekly meal plans
-- household suggestions and voting
-- a chosen meal connected to shared weekly progress
+- complete/edit or cancel a shared plan
+- visit mode: countdown, packing checklist, and remote rituals
+- richer memory wall with date and event context
 
 ## Then
 
 - real family activity feed and member avatars
 - richer room details and rewards derived from shared contribution
-- memory wall
 - polish motion, art direction, and responsive dashboard states
 
 ## Later only if useful
 
 - realtime presence
 - notifications
-- photo memories
 - tablet / wall dashboard mode
 - Google Sheets summary export

@@ -4,9 +4,9 @@
 
 Use it for visual-system direction, component patterns, UX review, accessibility, responsive layout, and restrained motion. It is not a component library or substitute for product structure.
 
-The local search scripts are available and Python works on this machine. Before a major new visual slice, run the design-system query and a focused UX review; retain the established Hearthlight visual baseline when generic results conflict with it.
+The local search scripts are available and Python works on this machine. Before a major new visual slice, run the design-system query and a focused UX review; retain the established Family Harmony visual baseline when generic results conflict with it.
 
-## Hearthlight baseline
+## Family Harmony baseline
 
 - warm forest green, cream paper, soft mint, honey, peach, and lavender
 - Fredoka headings with Nunito body copy
@@ -18,5 +18,5 @@ The local search scripts are available and Python works on this machine. Before 
 
 - Framer Motion: subtle page and interaction motion
 - Tailwind: available utility foundation
-- custom CSS: Hearthlight identity and page layouts
+- custom CSS: Family Harmony identity and page layouts
 - Radix: accessible primitives when a complex dialog, menu, tabs, or tooltip is needed

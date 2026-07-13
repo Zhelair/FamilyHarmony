@@ -1,4 +1,4 @@
-# Hearthlight Stack
+# Family Harmony Stack
 
 ## Final Stack Choice
 

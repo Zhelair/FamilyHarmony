@@ -1,4 +1,4 @@
-# Hearthlight
+# Family Harmony
 
 Working name for the family app rewrite.
 
@@ -11,7 +11,7 @@ Why this name:
 
 ## Direction
 
-Hearthlight is a family dashboard with a soft game layer.
+Family Harmony is a family dashboard with a soft game layer.
 
 It should feel like:
 - a real household app first
@@ -46,4 +46,4 @@ It should feel like:
 ## Notes
 
 - `Table & Tide` remains the prototype/reference world
-- `Hearthlight` is the v2 rewrite workspace
+- `Family Harmony` is the v2 rewrite workspace

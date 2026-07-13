@@ -1,6 +1,6 @@
 # Auth Page Overrides
 
-> **PROJECT:** Hearthlight
+> **PROJECT:** Family Harmony
 > **Generated:** 2026-07-13 17:59:02
 > **Page Type:** Authentication
 

@@ -1,10 +1,10 @@
-# Hearthlight Design System
+# Family Harmony Design System
 
 > For a page-specific exception, check `design-system/pages/[page-name].md` first. Otherwise follow this live baseline.
 
 ## Product
 
-**Hearthlight** is a private family wellbeing dashboard, not a newsletter platform. The experience should feel warm, practical, premium, and gently motivating.
+**Family Harmony** is a private family wellbeing dashboard, not a newsletter platform. The experience should feel warm, practical, premium, and gently motivating.
 
 ## Foundations
 

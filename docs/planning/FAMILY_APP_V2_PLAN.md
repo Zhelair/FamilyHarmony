@@ -2,11 +2,11 @@
 
 ## Product direction
 
-Hearthlight is a family operating system with a soft game layer: dashboard-first, warm, calm, and useful before it is playful.
+Family Harmony is a family operating system with a soft game layer: dashboard-first, warm, calm, and useful before it is playful.
 
 ## Access decision
 
-- Hearthlight is private.
+- Family Harmony is private.
 - Supabase public self-sign-up is disabled.
 - Accounts are manually created with email/password and Auto confirm enabled.
 - A household owner grants access to an existing account in Settings.

@@ -20,6 +20,8 @@ Each room has three visual states: resting, warming, and glowing. Shared work un
 
 Only prototype a walkable 2D character after the app has proven that the weekly goal, challenge, and reflection loop is used consistently. The first version should be a single small map, no online multiplayer, no 3D, and no borrowed game assets. Any open-source code must have a compatible license and should only supply engine mechanics, never the product’s identity or artwork.
 
-## First visual slice
+## First visual slice — implemented
 
-Place a clickable 2D home card on the dashboard. It should show the five rooms as illustrated destinations and explain what activity warms each room. This is the right next visual task after meals and the activity feed become real.
+The dashboard now includes a clickable 2D Harmony Home. It shows five rooms as illustrated destinations, labels each room's resting/warming/glowing state, and derives those states from the current user's visible goals and challenges. Clicking a room leads to Goals, where the real work happens.
+
+This deliberately stays a small, accessible CSS illustration rather than an engine or borrowed game art. The next home work is room detail views and real family activity, after meal planning is live.

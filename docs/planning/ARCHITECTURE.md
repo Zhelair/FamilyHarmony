@@ -4,7 +4,7 @@
 
 - React + Vite single-page application with React Router.
 - Supabase Auth holds manually created email/password accounts.
-- Supabase Postgres holds profiles, households, memberships, personal check-ins, weekly goals, and goal-progress logs.
+- Supabase Postgres holds profiles, households, memberships, personal check-ins, weekly goals, goal-progress logs, weekly reflections, and opt-in family challenges.
 - The browser uses only the public URL and anon key. Authorization is enforced with Row Level Security, never just a client route guard.
 
 ## Private access model
@@ -18,19 +18,21 @@ There are no public sign-up, invite, join-household, magic-link, or email-delive
 
 ## Route map
 
-- `/dashboard` - household dashboard and shared weekly focus
+- `/dashboard` - household dashboard, real-progress Harmony Home, and shared weekly focus
 - `/me` - personal daily check-ins
 - `/challenges` - real weekly goals
 - `/meals` - next slice, currently placeholder
 - `/settings` - household access, password change, and sign-out
 
-## Weekly goals model
+## Weekly progress model
 
 - `weekly_goals` belongs to a household and current week.
 - A `shared` goal is visible to household members; any member can add progress.
 - A `personal` goal is visible only to its creator.
 - `goal_progress_logs` are append-only progress entries from the signed-in member.
 - RLS policies control both goal visibility and log access.
+- Challenges are household-visible, but members choose whether to join and log their own progress.
+- The dashboard computes room states from visible real progress; it does not persist or expose private-room progress to others.
 
 ## Build rule
 

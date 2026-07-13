@@ -18,8 +18,10 @@ Family Harmony is a family operating system with a soft game layer: dashboard-fi
 2. Household dashboard
 3. My Day check-ins
 4. Weekly goals: personal and shared, with progress logging
-5. Settings and owner-managed household access
-6. Meal planner, house progression, and memories next
+5. Opt-in challenges, Harmony points, achievements, and weekly reflection
+6. A data-driven 2D Harmony Home dashboard
+7. Settings, language preference, and owner-managed household access
+8. Meal planner and memories next
 
 ## Core entities
 
@@ -30,7 +32,7 @@ Family Harmony is a family operating system with a soft game layer: dashboard-fi
 - weekly_goals
 - goal_progress_logs
 - meal_plans and meal_votes (next)
-- rewards, memories, and house_progress (later)
+- rewards, memories, and richer house_progress (later)
 
 ## Weekly goal rules
 
@@ -38,7 +40,7 @@ Family Harmony is a family operating system with a soft game layer: dashboard-fi
 - `shared` goals and their progress are visible to members of that household.
 - `personal` goals and their progress are visible only to their creator.
 - Goals invite gentle contribution, never public ranking or shame.
-- House progression should later derive from shared activity, not one person alone.
+- The Hearth derives from shared activity; personal category rooms are visible only to their owner.
 
 ## UI direction
 

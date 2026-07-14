@@ -4,7 +4,7 @@
 
 - React + Vite single-page application with React Router.
 - Supabase Auth holds manually created email/password accounts.
-- Supabase Postgres holds profiles, households, memberships, personal check-ins, daily intentions, weekly goals, goal-progress logs, weekly reflections, opt-in family challenges, Together moments, and private caption memories.
+- Supabase Postgres holds profiles, households, memberships, personal check-ins, daily intentions, weekly goals, goal-progress logs, weekly reflections, opt-in family challenges, Together moments, small household asks, and private caption memories.
 - The browser uses only the public URL and anon key. Authorization is enforced with Row Level Security, never just a client route guard.
 
 ## Private access model
@@ -22,6 +22,7 @@ There are no public sign-up, invite, join-household, magic-link, or email-delive
 - `/me` - personal daily check-ins
 - `/challenges` - real weekly goals
 - `/together` - shared moments, opt-in attendance, and private family memories
+- `/asks` - small household requests, a one-person claim, completion, and thank-you
 - `/meals` - redirects to Together; meal planning is intentionally out of scope
 - `/settings` - household access, password change, and sign-out
 

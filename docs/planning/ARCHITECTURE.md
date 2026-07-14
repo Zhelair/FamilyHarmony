@@ -18,7 +18,7 @@ There are no public sign-up, invite, join-household, magic-link, or email-delive
 
 ## Route map
 
-- `/dashboard` - household dashboard, real-progress Harmony Home, and shared weekly focus
+- `/dashboard` - household dashboard, Family Pulse, cooperative Garden, weekly Family Choice, and shared weekly focus
 - `/me` - personal daily check-ins
 - `/challenges` - real weekly goals
 - `/together` - shared moments, opt-in attendance, and private family memories

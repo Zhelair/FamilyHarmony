@@ -20,7 +20,9 @@ Open **Supabase -> SQL Editor -> New query** and run these files in order:
 
 `supabase/migrations/20260713030000_together_memories_and_daily_intentions.sql`
 
-They create the private household tables, weekly goals, reflections, opt-in challenges, private daily intentions, Together moments, text-only family memories, and their Row Level Security policies. Run each file once, in that order, before deploying this version.
+`supabase/migrations/20260714010000_together_moment_lifecycle.sql`
+
+They create the private household tables, weekly goals, reflections, opt-in challenges, private daily intentions, Together moments, text-only family memories, their Row Level Security policies, and the moment lifecycle. Run each file once, in that order, before deploying this version.
 
 ## 2. Create the first owner account
 

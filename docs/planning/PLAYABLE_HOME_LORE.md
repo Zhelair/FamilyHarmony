@@ -10,11 +10,11 @@ Build the home as a warm, interactive 2D scene first: custom SVG/CSS rooms, subt
 
 - **The Hearth**: family glow from shared goals and friendly challenges.
 - **Garden**: sport and movement.
-- **Kitchen**: nutrition and meal planning.
+- **Living Room**: shared moments, visits, calls, and connection.
 - **Library**: reading, learning, applications, and skills.
 - **Quiet Corner**: stretching, yoga, recovery, and calm moments.
 
-Each room has three visual states: resting, warming, and glowing. Shared work unlocks small visual details—garden lights, a fuller bookshelf, a warm kitchen window—rather than pay-to-win or public rankings.
+Each room has three visual states: resting, warming, and glowing. Shared work unlocks small visual details—garden lights, a fuller bookshelf, a warm living-room window—rather than pay-to-win or public rankings.
 
 ## When to consider a walkable home
 
@@ -24,4 +24,4 @@ Only prototype a walkable 2D character after the app has proven that the weekly 
 
 The dashboard now includes a clickable 2D Harmony Home. It shows five rooms as illustrated destinations, labels each room's resting/warming/glowing state, and derives those states from the current user's visible goals and challenges. Clicking a room leads to Goals, where the real work happens.
 
-This deliberately stays a small, accessible CSS illustration rather than an engine or borrowed game art. The next home work is room detail views and real family activity, after meal planning is live.
+This deliberately stays a small, accessible CSS illustration rather than an engine or borrowed game art. The next home work is room detail views that lead into real shared activity and moments.

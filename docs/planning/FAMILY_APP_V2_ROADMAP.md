@@ -10,7 +10,7 @@
 - weekly goals with presets, categories, RLS, creation, and progress logging
 - Russian interface preference
 - opt-in challenges, Harmony points, achievements, and Sunday reflection
-- first 2D Harmony Home dashboard: Hearth, Garden, Kitchen, Library, and Quiet Corner respond to real progress
+- first 2D Harmony Home dashboard: Hearth, Garden, Living Room, Library, and Quiet Corner respond to real progress
 - Together: shared plans, opt-in attendance, and private caption memories
 - My Day: private intention, reason, evening note, and daily check-ins
 

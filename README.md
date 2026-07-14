@@ -1,6 +1,6 @@
 # Family Harmony
 
-Family Harmony is a warm, private family app for shared household goals, personal check-ins, friendly challenges, gentle routines, meals, and a home that grows with the family.
+Family Harmony is a warm, private family app for shared household goals, personal check-ins, friendly challenges, gentle routines, shared moments, and a home that grows with the family.
 
 ## Start here
 
